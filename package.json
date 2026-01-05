@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "deno src/server.ts --watch 'src/' -e ts",
+    "compile": "npx tsc",
+    "start": "node ./dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -20,12 +23,8 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/morgan": "^1.9.10",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
-
-  "scripts_":{
-    "dev": "npx nodemon src/server.ts --watch 'src/' -e ts",
-    "compile": "npx tsc",
-    "start":"node ./dist/server.js" 
-  }
+  "type": "module"
 }
