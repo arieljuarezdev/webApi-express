@@ -29,7 +29,38 @@ async function updateCustomer(id:number, newCustomer: Customer): Promise <Custom
     return new Promise((resolve, reject)=>{
         const index = customers.findIndex(c => c.id == id)
         if(index >= 0){
-            if(newCustomer.cpf)
+            if(newCustomer.name && customers[index]?.name !== newCustomer.name){
+                customers[index]!.name = newCustomer.name;
+            }
+
+            if(newCustomer.cpf && customers[index]?.cpf !== newCustomer.cpf){
+                customers[index]!.cpf = newCustomer.cpf
+            }
+
+            return resolve(customers[index])
         }
+        return reject(undefined)
     })
+}
+
+async function deleteCustomer(id:number): Promise<boolean> {
+    return new Promise((resolve, reject)=>{
+        const index = customers.findIndex(c => c.id === id)
+
+        if(index >= 0){
+            customers.splice(index, 1)
+
+            return resolve(true)
+        }
+
+        return reject(false)
+    })
+}
+
+export default {
+    getCustomer,
+    getCustomers,
+    addCustomer,
+    updateCustomer,
+    deleteCustomer
 }
